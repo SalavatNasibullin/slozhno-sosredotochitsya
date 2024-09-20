@@ -1,102 +1,79 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-	/* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
-	
-}
-
-.page {
+    display: grid;
+    align-items: center;
+    background-image: var(--header-bg-image);
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     background-attachment: fixed;
-    min-height: 100dvh;
-    background-color: var(--background-color);
-    background-image: var(--background-image);
-    color: var(--accent-color);
-}
-
-.container {
-    padding-inline: var(--padding);
+    font-family: var(--main-font, IBM Plex Mono, sans-serif);
+    font-size: var(--main-font-size, 18px);
+    color: var(--main-text-color, #f1b2ce);
+    background-color: var(--bg-color, #000028);
+    line-height: 23.4px;
 }
 
 .decorated-zone {
-    block-size: 100dvh;
-    padding-block: var(--padding);
     position: relative;
 }
 
 .decorated-zone::before {
     content: "";
     position: absolute;
-    block-size: 25px;
-    inline-size: 25px;
-    bottom: var(--padding);
-    left: 0;
-    border-inline-start: 1px solid currentColor;
-    border-block-end: 1px solid currentColor;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    border-top: 1px solid var(--decor-color, #ff0070);
+    border-right: 1px solid var(--decor-color, #ff0070);
 }
 
 .decorated-zone::after {
     content: "";
     position: absolute;
-    block-size: 25px;
-    inline-size: 25px;
-    top: var(--padding);
-    right: 0;
-    border-inline-end: 1px solid currentColor;
-    border-block-start: 1px solid currentColor;
+    bottom: 10px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    border-bottom: 1px solid var(--decor-color, #ff0070);
+    border-left: 1px solid var(--decor-color, #ff0070);
 }
 
 .header {
+    min-block-size: 100vh;
+    padding: var(--padding, 10px);
     display: grid;
-    grid-template-rows: auto max-content auto;
+    grid-template-rows: 1fr min-content 1fr;
     align-items: center;
-    justify-items: end;
-}
-
-.header__theme-dark-decor {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 20px 0 0 0;
-    color: var(--rec-decoration-clr);
-    inset-inline-end: 0;
-    inset-block-start: 0;
-}
-
-.header__theme-dark-decor::after {
-    content: "";
-    display: inline-block;
-    margin-inline-end: 9px;
-    margin-inline-start: 10px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background-color: currentColor;
-    box-shadow: 0 0 5px 4px currentColor;
 }
 
 .header__theme-menu-list {
     display: flex;
     flex-direction: column;
+    align-items: end;
     gap: 10px;
+    color: var(--decor-color, #ff0070);
 }
 
 .header__theme-menu-button {
-    inline-size: 70px;
-    block-size: 26px;
-    display: block;
-    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 26px;
+    padding: 0px 13px;
     border: none;
+    background-color: transparent;
     text-transform: lowercase;
     line-height: 18px;
     cursor: pointer;
 }
 
+.header__theme-menu-button_active {
+    pointer-events: none;
+    outline: 1px solid var(--decor-color, #ff0070);
+}
+
 .header__theme-menu-button:hover {
-    border: 1px solid rgba(var(--accent-color-rgb), 0.4);
+    outline: 1px solid var(--btn-hover-color, rgba(255, 0, 112, 0.4));
 }
 
 .header__theme-menu-button:focus {
@@ -108,31 +85,33 @@
     border-block-end: 1px solid currentColor;
 }
 
-.header__theme-menu-button_active {
-    pointer-events: none;
-    border: 1px solid currentColor;
-}
-
 .title {
-    justify-self: start;
-    color: rgb(219, 0, 255);
-    font-size: var(--title-font-size);
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
     font-weight: 700;
     line-height: 82.5%;
-}
-
-.header__title {
-    text-shadow: 4px 4px 0 var(--accent-color);
+    text-shadow: 4px 4px 0px var(--accent-color, #ff0070);
+    color: var(--main-title-text-color, #db00ff);
 }
 
 .title-decor {
-    --text-color: var(--background-color);
-    font-family: inherit;
+    background-color: var(--accent-color, #ff0070);
+    color: var(--subtitle-color, #000028);
     font-weight: 700;
-    font-size: inherit;
-    line-height: inherit;
-    color: var(--text-color);
-    background-color: var(--accent-color);
+    font-family: var(--main-font, IBM Plex Mono, sans-serif);
+    font-size: var(--main-font-size, 18px);
+}
+
+.content {
+    display: grid;
+    gap: 50px;
+    padding: 0 var(--padding, 10px);
+    margin-block-start: 40px;
+    margin-block-end: 40px;
+}
+
+.section__reasons-card-set {
+    display: grid;
+    gap: 20px;
 }
 
 .header__text {
@@ -143,33 +122,31 @@
     margin-block: var(--main-block-margin);
 }
 
-.main__article {
+.section {
     display: grid;
     gap: 20px;
-    margin-block-end: var(--article-margin);
 }
 
-.main__title {
-    font-size: inherit;
+.section__title {
+    font-family: var(--main-font, IBM Plex Mono, sans-serif);
+    font-size: var(--main-font-size, 18px);
     font-weight: 700;
+    line-height: 23.4px;
+    color: var(--decor-color, #ff0070);
 }
 
-.main__inner-article {
+.section__card {
     display: grid;
-    gap: 20px;
-    color: var(--text-color);
+    gap: 10px;
 }
 
-.main__text {
-    margin-block-end: 10px;
-}
-
-.subtitle {
-    font-weight: inherit;
+.title-normal-font-weight {
+    font-weight: 400;
 }
 
 .link {
     text-shadow: 2px 2px 0 var(--accent-color);
+    text-decoration: none;
 }
 
 .link:hover {
@@ -186,126 +163,29 @@
 
 .main__image {
     display: grid;
-    gap: var(--padding);
-    margin-block-start: var(--padding);
+    gap: 10px;
 }
 
 .image {
-    display: block;
-    inline-size: 100%;
-    object-fit: contain;
-    object-position: center;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
-@media (width >= 768px) {
-    :root {
-        --padding: 20px;
-        --article-margin: 80px;
-        --main-block-margin: 60px;
-        --title-font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-    }
-
-    .title {
-        margin-inline-start: -20px;
-    }
-
-    .main__article:nth-child(odd) {
-        grid-template-columns: 1fr 2fr;
-    }
-
-    .main__article:nth-child(even):not(:last-child) {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-    }
-
-    .main__article:nth-child(even):not(:last-child) .main__inner-article {
-        grid-column: span 3;
-    }
-
-    .main__image {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, auto);
-    }
-
-    .main__image-item:nth-child(1) {
-        grid-column: 1 / span 2;
-        grid-row: 1 / 2;
-    }
-
-    .main__image-item:nth-child(2) {
-        grid-column: 3 / 4;
-        grid-row: 1 / span 2;
-    }
-
-    .main__image-item:nth-child(3) {
-        grid-column: 1 / 2;
-        grid-row: 2 / span 2;
-    }
-
-    .main__image-item:nth-child(5) {
-        grid-column: 2 / span 2;
-        grid-row: 3 / 4;
-    }
-
-    .image {
-        block-size: 100%;
-        object-fit: cover;
-    }
-}
-
-@media (width >= 1024px) {
-    .header__theme-menu {
-        justify-self: center;
-        align-self: start;
-    }
-
-    .header__theme-menu-list {
-        flex-direction: row;
-    }
-
-    .main__article:nth-child(odd) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .main__article:nth-child(odd) > .main__inner-article {
-        grid-column: 2 / span 2;
-    }
-
-    .main__article:nth-child(even):not(:last-child) .main__inner-article {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.gallery {
+    display: grid;
+    gap: 10px;
 }
 
 .footer {
-    display: grid;
+    min-block-size: 100vh;
+    padding: var(--padding, 10px);
+    display: flex;
     justify-content: center;
     align-items: center;
+    text-shadow: 2px 2px 0px var(--accent-color, #ff0070);
 }
 
 .footer__title {
     text-shadow: 2px 2px 0 var(--accent-color);
-}
-
-.theme_dark .header__theme-dark-decor {
-    display: inline-block;
-}
-
-.theme_dark .title-decor {
-    --text-color: var(--background-color);
-}
-
-.theme_dark .title {
-    color: rgb(219, 0, 255);
-}
-
-.theme_light .header__theme-dark-decor {
-    display: none;
-}
-
-.theme_light .title-decor {
-    --text-color: var(--text-color);
-}
-
-.theme_light .title {
-    color: rgb(255, 194, 230);
 }
