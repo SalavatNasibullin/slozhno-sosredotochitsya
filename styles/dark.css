@@ -12,29 +12,6 @@
   --header-bg-image: url(../images/cover-image-dark.png);
 }
 
-.header__theme-dark-decor {
-  position: absolute;
-  top: 10px;
-  right: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--accent-color, #ff0070);
-  text-align: center;
-  text-transform: uppercase;
-  line-height: 25px;
-}
-
-.header__theme-dark-decor::after {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--accent-color, #ff0070);
-  filter: drop-shadow(0px 0px 4px var(--accent-color, #ff0070));
-  box-shadow: 0 0 5px 2px currentColor;
-}
-
 .theme_dark .title {
   color: var(--brand-color, #db00ff);
 }
